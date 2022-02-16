@@ -1,0 +1,1866 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StudentsManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblCommonSettings">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblDictionaries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="DictionaryType" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDictionaryType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblEducationLevel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Language" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Position" Type="tinyint" Nullable="false" />
+          <Property Name="MaxScore" Type="int" Nullable="false" />
+          <Property Name="MinScore" Type="int" />
+        </EntityType>
+        <EntityType Name="tblEmployee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronomic" Type="nvarchar" MaxLength="50" />
+          <Property Name="SurnameAndInitails" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="16" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="16" />
+          <Property Name="EmployeeType" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEmployee2EducationLevel">
+          <Key>
+            <PropertyRef Name="Instructor" />
+            <PropertyRef Name="EducationLevel" />
+          </Key>
+          <Property Name="Instructor" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EducationLevel" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEmployee2Group">
+          <Key>
+            <PropertyRef Name="Employee" />
+            <PropertyRef Name="Group" />
+          </Key>
+          <Property Name="Employee" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Group" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EventType" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Theme" Type="nvarchar(max)" />
+          <Property Name="PrimaryInstructor" Type="uniqueidentifier" />
+          <Property Name="SubstituteInstructor" Type="uniqueidentifier" />
+          <Property Name="Auditorium" Type="uniqueidentifier" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblEvent2EductionLevel">
+          <Key>
+            <PropertyRef Name="Event" />
+            <PropertyRef Name="StartEducationLevel" />
+          </Key>
+          <Property Name="Event" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StartEducationLevel" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EndEducationLevel" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEvent2Equipment">
+          <Key>
+            <PropertyRef Name="Event" />
+            <PropertyRef Name="Equipment" />
+          </Key>
+          <Property Name="Event" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Equipment" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEvent2Group">
+          <Key>
+            <PropertyRef Name="Event" />
+            <PropertyRef Name="Group" />
+          </Key>
+          <Property Name="Event" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Group" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CurrentEducationLevel" Type="uniqueidentifier" />
+          <Property Name="PrimaryInstructor" Type="uniqueidentifier" />
+          <Property Name="SecondaryInstructor" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="tblPriceGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Position" Type="tinyint" Nullable="false" />
+          <Property Name="IndexInPercents" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblStudent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronomic" Type="nvarchar" MaxLength="50" />
+          <Property Name="SurnameAndInitials" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="32" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="16" />
+          <Property Name="PriceGroup" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Language1" Type="uniqueidentifier" />
+          <Property Name="CurrentScore1" Type="int" />
+          <Property Name="FirstTestScore1" Type="int" />
+          <Property Name="Group1" Type="uniqueidentifier" />
+          <Property Name="Language2" Type="uniqueidentifier" />
+          <Property Name="CurrentScore2" Type="int" />
+          <Property Name="FirstTestScore2" Type="int" />
+          <Property Name="Group2" Type="uniqueidentifier" />
+          <Property Name="Language3" Type="uniqueidentifier" />
+          <Property Name="CurrentScore3" Type="int" />
+          <Property Name="FirstTestScore3" Type="int" />
+          <Property Name="Group3" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SurnameAndInitials" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="EMail" Type="nvarchar" MaxLength="32" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="16" />
+          <Property Name="UserType" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'StudentsManager.dbo.vwDictionary4List' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwDictionary4List">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="DictionaryTypeId" />
+            <PropertyRef Name="DictionaryTypeName" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="DictionaryTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DictionaryTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'StudentsManager.dbo.vwEducationLevel4List' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwEducationLevel4List">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Position" />
+            <PropertyRef Name="MaxScore" />
+            <PropertyRef Name="LanguageId" />
+            <PropertyRef Name="LanguageName" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Position" Type="tinyint" Nullable="false" />
+          <Property Name="MinScore" Type="int" />
+          <Property Name="MaxScore" Type="int" Nullable="false" />
+          <Property Name="LanguageId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LanguageName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'StudentsManager.dbo.vwEmployee4List' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwEmployee4List">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="SurnameAndInitails" />
+            <PropertyRef Name="EmployeeTypeId" />
+            <PropertyRef Name="EmployeeTypeName" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronomic" Type="nvarchar" MaxLength="50" />
+          <Property Name="SurnameAndInitails" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="16" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="16" />
+          <Property Name="EmployeeTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EmployeeTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'StudentsManager.dbo.vwGroup4List' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwGroup4List">
+          <Key>
+            <PropertyRef Name="GroupId" />
+            <PropertyRef Name="GroupName" />
+            <PropertyRef Name="EducationLevelId" />
+            <PropertyRef Name="EducationLevelName" />
+            <PropertyRef Name="EducationLevelLanguageId" />
+            <PropertyRef Name="EducationLevelLanguageName" />
+          </Key>
+          <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GroupDescription" Type="nvarchar(max)" />
+          <Property Name="GroupPrimaryInstructor" Type="uniqueidentifier" />
+          <Property Name="GroupSecondaryInstructor" Type="uniqueidentifier" />
+          <Property Name="EducationLevelId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EducationLevelName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EducationLevelLanguageId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EducationLevelLanguageName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'StudentsManager.dbo.vwStudent4List' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwStudent4List">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="SurnameAndInitials" />
+            <PropertyRef Name="PriceGroupId" />
+            <PropertyRef Name="PriceGroupName" />
+            <PropertyRef Name="Language1Id" />
+            <PropertyRef Name="Language1Name" />
+            <PropertyRef Name="Language2Id" />
+            <PropertyRef Name="Language2Name" />
+            <PropertyRef Name="Language3Id" />
+            <PropertyRef Name="Language3Name" />
+            <PropertyRef Name="Group1Id" />
+            <PropertyRef Name="Group1Name" />
+            <PropertyRef Name="Group2Id" />
+            <PropertyRef Name="Group2Name" />
+            <PropertyRef Name="Group3Id" />
+            <PropertyRef Name="Group3Name" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronomic" Type="nvarchar" MaxLength="50" />
+          <Property Name="SurnameAndInitials" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="32" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="16" />
+          <Property Name="CurrentScore1" Type="int" />
+          <Property Name="FirstTestScore1" Type="int" />
+          <Property Name="CurrentScore2" Type="int" />
+          <Property Name="FirstTestScore2" Type="int" />
+          <Property Name="CurrentScore3" Type="int" />
+          <Property Name="FirstTestScore3" Type="int" />
+          <Property Name="PriceGroupId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PriceGroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Language1Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Language1Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Language2Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Language2Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Language3Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Language3Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Group1Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Group1Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Group2Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Group2Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Group3Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Group3Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'StudentsManager.dbo.vwUser4List' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwUser4List">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Login" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="SurnameAndInitials" />
+            <PropertyRef Name="UserTypeId" />
+            <PropertyRef Name="UserTypeName" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SurnameAndInitials" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMail" Type="nvarchar" MaxLength="16" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="16" />
+          <Property Name="UserTypeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Employee2Group_tblEmployee">
+          <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="1" />
+          <End Role="tblEmployee2Group" Type="Self.tblEmployee2Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEmployee2Group">
+              <PropertyRef Name="Employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee2Group_tblGroup">
+          <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="1" />
+          <End Role="tblEmployee2Group" Type="Self.tblEmployee2Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEmployee2Group">
+              <PropertyRef Name="Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event2Equipment_tblEvent">
+          <End Role="tblEvent" Type="Self.tblEvent" Multiplicity="1" />
+          <End Role="tblEvent2Equipment" Type="Self.tblEvent2Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent2Equipment">
+              <PropertyRef Name="Event" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event2Group_tblEquipment">
+          <End Role="tblDictionaries" Type="Self.tblDictionaries" Multiplicity="1" />
+          <End Role="tblEvent2Equipment" Type="Self.tblEvent2Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionaries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent2Equipment">
+              <PropertyRef Name="Equipment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event2Group_tblEvent">
+          <End Role="tblEvent" Type="Self.tblEvent" Multiplicity="1" />
+          <End Role="tblEvent2Group" Type="Self.tblEvent2Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent2Group">
+              <PropertyRef Name="Event" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event2Group_tblGroup">
+          <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="1" />
+          <End Role="tblEvent2Group" Type="Self.tblEvent2Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent2Group">
+              <PropertyRef Name="Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor2EducationLevel_EducationLevel">
+          <End Role="tblEducationLevel" Type="Self.tblEducationLevel" Multiplicity="1" />
+          <End Role="tblEmployee2EducationLevel" Type="Self.tblEmployee2EducationLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEducationLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEmployee2EducationLevel">
+              <PropertyRef Name="EducationLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instructor2EducationLevel_Employee">
+          <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="1" />
+          <End Role="tblEmployee2EducationLevel" Type="Self.tblEmployee2EducationLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEmployee2EducationLevel">
+              <PropertyRef Name="Instructor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDictionaries_tblDictionaryType">
+          <End Role="tblDictionaryType" Type="Self.tblDictionaryType" Multiplicity="1" />
+          <End Role="tblDictionaries" Type="Self.tblDictionaries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionaryType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDictionaries">
+              <PropertyRef Name="DictionaryType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmployee_tblEmployeeType">
+          <End Role="tblDictionaries" Type="Self.tblDictionaries" Multiplicity="1" />
+          <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionaries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEmployee">
+              <PropertyRef Name="EmployeeType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent_tblAuditorium">
+          <End Role="tblDictionaries" Type="Self.tblDictionaries" Multiplicity="0..1" />
+          <End Role="tblEvent" Type="Self.tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionaries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="Auditorium" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent_tblEventType">
+          <End Role="tblDictionaries" Type="Self.tblDictionaries" Multiplicity="1" />
+          <End Role="tblEvent" Type="Self.tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionaries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="EventType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent_tblInstructor">
+          <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="0..1" />
+          <End Role="tblEvent" Type="Self.tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="PrimaryInstructor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent_tblInstructor1">
+          <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="0..1" />
+          <End Role="tblEvent" Type="Self.tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="SubstituteInstructor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent2EductionLevel_tblEducationLevel">
+          <End Role="tblEducationLevel" Type="Self.tblEducationLevel" Multiplicity="1" />
+          <End Role="tblEvent2EductionLevel" Type="Self.tblEvent2EductionLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEducationLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent2EductionLevel">
+              <PropertyRef Name="StartEducationLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent2EductionLevel_tblEducationLevel1">
+          <End Role="tblEducationLevel" Type="Self.tblEducationLevel" Multiplicity="1" />
+          <End Role="tblEvent2EductionLevel" Type="Self.tblEvent2EductionLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEducationLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent2EductionLevel">
+              <PropertyRef Name="EndEducationLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent2EductionLevel_tblEvent">
+          <End Role="tblEvent" Type="Self.tblEvent" Multiplicity="1" />
+          <End Role="tblEvent2EductionLevel" Type="Self.tblEvent2EductionLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent2EductionLevel">
+              <PropertyRef Name="Event" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGroup_tblEducationLevel">
+          <End Role="tblEducationLevel" Type="Self.tblEducationLevel" Multiplicity="0..1" />
+          <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEducationLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblGroup">
+              <PropertyRef Name="CurrentEducationLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGroup_tblInstructor">
+          <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="0..1" />
+          <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblGroup">
+              <PropertyRef Name="PrimaryInstructor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGroup_tblInstructor1">
+          <End Role="tblEmployee" Type="Self.tblEmployee" Multiplicity="0..1" />
+          <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblGroup">
+              <PropertyRef Name="SecondaryInstructor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblDictionaries1">
+          <End Role="tblDictionaries" Type="Self.tblDictionaries" Multiplicity="0..1" />
+          <End Role="tblStudent" Type="Self.tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionaries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="Language1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblDictionaries2">
+          <End Role="tblDictionaries" Type="Self.tblDictionaries" Multiplicity="0..1" />
+          <End Role="tblStudent" Type="Self.tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionaries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="Language2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblDictionaries3">
+          <End Role="tblDictionaries" Type="Self.tblDictionaries" Multiplicity="0..1" />
+          <End Role="tblStudent" Type="Self.tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionaries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="Language3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblGroup1">
+          <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="0..1" />
+          <End Role="tblStudent" Type="Self.tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="Group1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblGroup2">
+          <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="0..1" />
+          <End Role="tblStudent" Type="Self.tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="Group2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblGroup3">
+          <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="0..1" />
+          <End Role="tblStudent" Type="Self.tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="Group3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblPriceGroup">
+          <End Role="tblPriceGroup" Type="Self.tblPriceGroup" Multiplicity="1" />
+          <End Role="tblStudent" Type="Self.tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPriceGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="PriceGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_tblUserType">
+          <End Role="tblDictionaries" Type="Self.tblDictionaries" Multiplicity="1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionaries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="prcMakeBackup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pathOnly" Type="varchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="StudentsManagerModelStoreContainer">
+          <EntitySet Name="tblCommonSettings" EntityType="Self.tblCommonSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDictionaries" EntityType="Self.tblDictionaries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDictionaryType" EntityType="Self.tblDictionaryType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEducationLevel" EntityType="Self.tblEducationLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEmployee" EntityType="Self.tblEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEmployee2EducationLevel" EntityType="Self.tblEmployee2EducationLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEmployee2Group" EntityType="Self.tblEmployee2Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEvent" EntityType="Self.tblEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEvent2EductionLevel" EntityType="Self.tblEvent2EductionLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEvent2Equipment" EntityType="Self.tblEvent2Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEvent2Group" EntityType="Self.tblEvent2Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGroup" EntityType="Self.tblGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPriceGroup" EntityType="Self.tblPriceGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStudent" EntityType="Self.tblStudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vwDictionary4List" EntityType="Self.vwDictionary4List" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwDictionary4List].[Id] AS [Id], 
+    [vwDictionary4List].[Name] AS [Name], 
+    [vwDictionary4List].[Description] AS [Description], 
+    [vwDictionary4List].[DictionaryTypeId] AS [DictionaryTypeId], 
+    [vwDictionary4List].[DictionaryTypeName] AS [DictionaryTypeName]
+    FROM [dbo].[vwDictionary4List] AS [vwDictionary4List]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwEducationLevel4List" EntityType="Self.vwEducationLevel4List" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwEducationLevel4List].[Id] AS [Id], 
+    [vwEducationLevel4List].[Name] AS [Name], 
+    [vwEducationLevel4List].[Description] AS [Description], 
+    [vwEducationLevel4List].[Position] AS [Position], 
+    [vwEducationLevel4List].[MinScore] AS [MinScore], 
+    [vwEducationLevel4List].[MaxScore] AS [MaxScore], 
+    [vwEducationLevel4List].[LanguageId] AS [LanguageId], 
+    [vwEducationLevel4List].[LanguageName] AS [LanguageName]
+    FROM [dbo].[vwEducationLevel4List] AS [vwEducationLevel4List]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwEmployee4List" EntityType="Self.vwEmployee4List" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwEmployee4List].[Id] AS [Id], 
+    [vwEmployee4List].[Name] AS [Name], 
+    [vwEmployee4List].[Surname] AS [Surname], 
+    [vwEmployee4List].[Patronomic] AS [Patronomic], 
+    [vwEmployee4List].[SurnameAndInitails] AS [SurnameAndInitails], 
+    [vwEmployee4List].[Email] AS [Email], 
+    [vwEmployee4List].[Phone] AS [Phone], 
+    [vwEmployee4List].[EmployeeTypeId] AS [EmployeeTypeId], 
+    [vwEmployee4List].[EmployeeTypeName] AS [EmployeeTypeName]
+    FROM [dbo].[vwEmployee4List] AS [vwEmployee4List]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwGroup4List" EntityType="Self.vwGroup4List" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwGroup4List].[GroupId] AS [GroupId], 
+    [vwGroup4List].[GroupName] AS [GroupName], 
+    [vwGroup4List].[GroupDescription] AS [GroupDescription], 
+    [vwGroup4List].[GroupPrimaryInstructor] AS [GroupPrimaryInstructor], 
+    [vwGroup4List].[GroupSecondaryInstructor] AS [GroupSecondaryInstructor], 
+    [vwGroup4List].[EducationLevelId] AS [EducationLevelId], 
+    [vwGroup4List].[EducationLevelName] AS [EducationLevelName], 
+    [vwGroup4List].[EducationLevelLanguageId] AS [EducationLevelLanguageId], 
+    [vwGroup4List].[EducationLevelLanguageName] AS [EducationLevelLanguageName]
+    FROM [dbo].[vwGroup4List] AS [vwGroup4List]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwStudent4List" EntityType="Self.vwStudent4List" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwStudent4List].[Id] AS [Id], 
+    [vwStudent4List].[Name] AS [Name], 
+    [vwStudent4List].[Surname] AS [Surname], 
+    [vwStudent4List].[Patronomic] AS [Patronomic], 
+    [vwStudent4List].[SurnameAndInitials] AS [SurnameAndInitials], 
+    [vwStudent4List].[Email] AS [Email], 
+    [vwStudent4List].[Phone] AS [Phone], 
+    [vwStudent4List].[CurrentScore1] AS [CurrentScore1], 
+    [vwStudent4List].[FirstTestScore1] AS [FirstTestScore1], 
+    [vwStudent4List].[CurrentScore2] AS [CurrentScore2], 
+    [vwStudent4List].[FirstTestScore2] AS [FirstTestScore2], 
+    [vwStudent4List].[CurrentScore3] AS [CurrentScore3], 
+    [vwStudent4List].[FirstTestScore3] AS [FirstTestScore3], 
+    [vwStudent4List].[PriceGroupId] AS [PriceGroupId], 
+    [vwStudent4List].[PriceGroupName] AS [PriceGroupName], 
+    [vwStudent4List].[Language1Id] AS [Language1Id], 
+    [vwStudent4List].[Language1Name] AS [Language1Name], 
+    [vwStudent4List].[Language2Id] AS [Language2Id], 
+    [vwStudent4List].[Language2Name] AS [Language2Name], 
+    [vwStudent4List].[Language3Id] AS [Language3Id], 
+    [vwStudent4List].[Language3Name] AS [Language3Name], 
+    [vwStudent4List].[Group1Id] AS [Group1Id], 
+    [vwStudent4List].[Group1Name] AS [Group1Name], 
+    [vwStudent4List].[Group2Id] AS [Group2Id], 
+    [vwStudent4List].[Group2Name] AS [Group2Name], 
+    [vwStudent4List].[Group3Id] AS [Group3Id], 
+    [vwStudent4List].[Group3Name] AS [Group3Name]
+    FROM [dbo].[vwStudent4List] AS [vwStudent4List]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwUser4List" EntityType="Self.vwUser4List" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwUser4List].[Id] AS [Id], 
+    [vwUser4List].[Login] AS [Login], 
+    [vwUser4List].[Password] AS [Password], 
+    [vwUser4List].[SurnameAndInitials] AS [SurnameAndInitials], 
+    [vwUser4List].[EMail] AS [EMail], 
+    [vwUser4List].[Phone] AS [Phone], 
+    [vwUser4List].[UserTypeId] AS [UserTypeId], 
+    [vwUser4List].[UserTypeName] AS [UserTypeName]
+    FROM [dbo].[vwUser4List] AS [vwUser4List]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Employee2Group_tblEmployee" Association="Self.FK_Employee2Group_tblEmployee">
+            <End Role="tblEmployee" EntitySet="tblEmployee" />
+            <End Role="tblEmployee2Group" EntitySet="tblEmployee2Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee2Group_tblGroup" Association="Self.FK_Employee2Group_tblGroup">
+            <End Role="tblGroup" EntitySet="tblGroup" />
+            <End Role="tblEmployee2Group" EntitySet="tblEmployee2Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event2Equipment_tblEvent" Association="Self.FK_Event2Equipment_tblEvent">
+            <End Role="tblEvent" EntitySet="tblEvent" />
+            <End Role="tblEvent2Equipment" EntitySet="tblEvent2Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event2Group_tblEquipment" Association="Self.FK_Event2Group_tblEquipment">
+            <End Role="tblDictionaries" EntitySet="tblDictionaries" />
+            <End Role="tblEvent2Equipment" EntitySet="tblEvent2Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event2Group_tblEvent" Association="Self.FK_Event2Group_tblEvent">
+            <End Role="tblEvent" EntitySet="tblEvent" />
+            <End Role="tblEvent2Group" EntitySet="tblEvent2Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event2Group_tblGroup" Association="Self.FK_Event2Group_tblGroup">
+            <End Role="tblGroup" EntitySet="tblGroup" />
+            <End Role="tblEvent2Group" EntitySet="tblEvent2Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor2EducationLevel_EducationLevel" Association="Self.FK_Instructor2EducationLevel_EducationLevel">
+            <End Role="tblEducationLevel" EntitySet="tblEducationLevel" />
+            <End Role="tblEmployee2EducationLevel" EntitySet="tblEmployee2EducationLevel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instructor2EducationLevel_Employee" Association="Self.FK_Instructor2EducationLevel_Employee">
+            <End Role="tblEmployee" EntitySet="tblEmployee" />
+            <End Role="tblEmployee2EducationLevel" EntitySet="tblEmployee2EducationLevel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDictionaries_tblDictionaryType" Association="Self.FK_tblDictionaries_tblDictionaryType">
+            <End Role="tblDictionaryType" EntitySet="tblDictionaryType" />
+            <End Role="tblDictionaries" EntitySet="tblDictionaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmployee_tblEmployeeType" Association="Self.FK_tblEmployee_tblEmployeeType">
+            <End Role="tblDictionaries" EntitySet="tblDictionaries" />
+            <End Role="tblEmployee" EntitySet="tblEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_tblAuditorium" Association="Self.FK_tblEvent_tblAuditorium">
+            <End Role="tblDictionaries" EntitySet="tblDictionaries" />
+            <End Role="tblEvent" EntitySet="tblEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_tblEventType" Association="Self.FK_tblEvent_tblEventType">
+            <End Role="tblDictionaries" EntitySet="tblDictionaries" />
+            <End Role="tblEvent" EntitySet="tblEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_tblInstructor" Association="Self.FK_tblEvent_tblInstructor">
+            <End Role="tblEmployee" EntitySet="tblEmployee" />
+            <End Role="tblEvent" EntitySet="tblEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_tblInstructor1" Association="Self.FK_tblEvent_tblInstructor1">
+            <End Role="tblEmployee" EntitySet="tblEmployee" />
+            <End Role="tblEvent" EntitySet="tblEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent2EductionLevel_tblEducationLevel" Association="Self.FK_tblEvent2EductionLevel_tblEducationLevel">
+            <End Role="tblEducationLevel" EntitySet="tblEducationLevel" />
+            <End Role="tblEvent2EductionLevel" EntitySet="tblEvent2EductionLevel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent2EductionLevel_tblEducationLevel1" Association="Self.FK_tblEvent2EductionLevel_tblEducationLevel1">
+            <End Role="tblEducationLevel" EntitySet="tblEducationLevel" />
+            <End Role="tblEvent2EductionLevel" EntitySet="tblEvent2EductionLevel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent2EductionLevel_tblEvent" Association="Self.FK_tblEvent2EductionLevel_tblEvent">
+            <End Role="tblEvent" EntitySet="tblEvent" />
+            <End Role="tblEvent2EductionLevel" EntitySet="tblEvent2EductionLevel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroup_tblEducationLevel" Association="Self.FK_tblGroup_tblEducationLevel">
+            <End Role="tblEducationLevel" EntitySet="tblEducationLevel" />
+            <End Role="tblGroup" EntitySet="tblGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroup_tblInstructor" Association="Self.FK_tblGroup_tblInstructor">
+            <End Role="tblEmployee" EntitySet="tblEmployee" />
+            <End Role="tblGroup" EntitySet="tblGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroup_tblInstructor1" Association="Self.FK_tblGroup_tblInstructor1">
+            <End Role="tblEmployee" EntitySet="tblEmployee" />
+            <End Role="tblGroup" EntitySet="tblGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblDictionaries1" Association="Self.FK_tblStudent_tblDictionaries1">
+            <End Role="tblDictionaries" EntitySet="tblDictionaries" />
+            <End Role="tblStudent" EntitySet="tblStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblDictionaries2" Association="Self.FK_tblStudent_tblDictionaries2">
+            <End Role="tblDictionaries" EntitySet="tblDictionaries" />
+            <End Role="tblStudent" EntitySet="tblStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblDictionaries3" Association="Self.FK_tblStudent_tblDictionaries3">
+            <End Role="tblDictionaries" EntitySet="tblDictionaries" />
+            <End Role="tblStudent" EntitySet="tblStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblGroup1" Association="Self.FK_tblStudent_tblGroup1">
+            <End Role="tblGroup" EntitySet="tblGroup" />
+            <End Role="tblStudent" EntitySet="tblStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblGroup2" Association="Self.FK_tblStudent_tblGroup2">
+            <End Role="tblGroup" EntitySet="tblGroup" />
+            <End Role="tblStudent" EntitySet="tblStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblGroup3" Association="Self.FK_tblStudent_tblGroup3">
+            <End Role="tblGroup" EntitySet="tblGroup" />
+            <End Role="tblStudent" EntitySet="tblStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblPriceGroup" Association="Self.FK_tblStudent_tblPriceGroup">
+            <End Role="tblPriceGroup" EntitySet="tblPriceGroup" />
+            <End Role="tblStudent" EntitySet="tblStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_tblUserType" Association="Self.FK_User_tblUserType">
+            <End Role="tblDictionaries" EntitySet="tblDictionaries" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StudentsManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="StudentsManagerEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="prcMakeBackup">
+          <Parameter Name="pathOnly" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tblCommonSettings" EntityType="StudentsManagerModel.tblCommonSetting" />
+          <EntitySet Name="tblDictionaries" EntityType="StudentsManagerModel.tblDictionary" />
+          <EntitySet Name="tblDictionaryTypes" EntityType="StudentsManagerModel.tblDictionaryType" />
+          <EntitySet Name="tblEducationLevels" EntityType="StudentsManagerModel.tblEducationLevel" />
+          <EntitySet Name="tblEmployees" EntityType="StudentsManagerModel.tblEmployee" />
+          <EntitySet Name="tblEvents" EntityType="StudentsManagerModel.tblEvent" />
+          <EntitySet Name="tblEvent2EductionLevel" EntityType="StudentsManagerModel.tblEvent2EductionLevel" />
+          <EntitySet Name="tblGroups" EntityType="StudentsManagerModel.tblGroup" />
+          <EntitySet Name="tblPriceGroups" EntityType="StudentsManagerModel.tblPriceGroup" />
+          <EntitySet Name="tblStudents" EntityType="StudentsManagerModel.tblStudent" />
+          <EntitySet Name="tblUsers" EntityType="StudentsManagerModel.tblUser" />
+          <EntitySet Name="vwDictionary4List" EntityType="StudentsManagerModel.vwDictionary4List" />
+          <EntitySet Name="vwEducationLevel4List" EntityType="StudentsManagerModel.vwEducationLevel4List" />
+          <EntitySet Name="vwEmployee4List" EntityType="StudentsManagerModel.vwEmployee4List" />
+          <EntitySet Name="vwStudent4List" EntityType="StudentsManagerModel.vwStudent4List" />
+          <EntitySet Name="vwUser4List" EntityType="StudentsManagerModel.vwUser4List" />
+          <AssociationSet Name="FK_tblDictionaries_tblDictionaryType" Association="StudentsManagerModel.FK_tblDictionaries_tblDictionaryType">
+            <End Role="tblDictionaryType" EntitySet="tblDictionaryTypes" />
+            <End Role="tblDictionary" EntitySet="tblDictionaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmployee_tblEmployeeType" Association="StudentsManagerModel.FK_tblEmployee_tblEmployeeType">
+            <End Role="tblDictionary" EntitySet="tblDictionaries" />
+            <End Role="tblEmployee" EntitySet="tblEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_tblAuditorium" Association="StudentsManagerModel.FK_tblEvent_tblAuditorium">
+            <End Role="tblDictionary" EntitySet="tblDictionaries" />
+            <End Role="tblEvent" EntitySet="tblEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_tblEventType" Association="StudentsManagerModel.FK_tblEvent_tblEventType">
+            <End Role="tblDictionary" EntitySet="tblDictionaries" />
+            <End Role="tblEvent" EntitySet="tblEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblDictionaries1" Association="StudentsManagerModel.FK_tblStudent_tblDictionaries1">
+            <End Role="tblDictionary" EntitySet="tblDictionaries" />
+            <End Role="tblStudent" EntitySet="tblStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblDictionaries2" Association="StudentsManagerModel.FK_tblStudent_tblDictionaries2">
+            <End Role="tblDictionary" EntitySet="tblDictionaries" />
+            <End Role="tblStudent" EntitySet="tblStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblDictionaries3" Association="StudentsManagerModel.FK_tblStudent_tblDictionaries3">
+            <End Role="tblDictionary" EntitySet="tblDictionaries" />
+            <End Role="tblStudent" EntitySet="tblStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_tblUserType" Association="StudentsManagerModel.FK_User_tblUserType">
+            <End Role="tblDictionary" EntitySet="tblDictionaries" />
+            <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent2EductionLevel_tblEducationLevel" Association="StudentsManagerModel.FK_tblEvent2EductionLevel_tblEducationLevel">
+            <End Role="tblEducationLevel" EntitySet="tblEducationLevels" />
+            <End Role="tblEvent2EductionLevel" EntitySet="tblEvent2EductionLevel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent2EductionLevel_tblEducationLevel1" Association="StudentsManagerModel.FK_tblEvent2EductionLevel_tblEducationLevel1">
+            <End Role="tblEducationLevel" EntitySet="tblEducationLevels" />
+            <End Role="tblEvent2EductionLevel" EntitySet="tblEvent2EductionLevel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroup_tblEducationLevel" Association="StudentsManagerModel.FK_tblGroup_tblEducationLevel">
+            <End Role="tblEducationLevel" EntitySet="tblEducationLevels" />
+            <End Role="tblGroup" EntitySet="tblGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_tblInstructor" Association="StudentsManagerModel.FK_tblEvent_tblInstructor">
+            <End Role="tblEmployee" EntitySet="tblEmployees" />
+            <End Role="tblEvent" EntitySet="tblEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent_tblInstructor1" Association="StudentsManagerModel.FK_tblEvent_tblInstructor1">
+            <End Role="tblEmployee" EntitySet="tblEmployees" />
+            <End Role="tblEvent" EntitySet="tblEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroup_tblInstructor" Association="StudentsManagerModel.FK_tblGroup_tblInstructor">
+            <End Role="tblEmployee" EntitySet="tblEmployees" />
+            <End Role="tblGroup" EntitySet="tblGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroup_tblInstructor1" Association="StudentsManagerModel.FK_tblGroup_tblInstructor1">
+            <End Role="tblEmployee" EntitySet="tblEmployees" />
+            <End Role="tblGroup" EntitySet="tblGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEvent2EductionLevel_tblEvent" Association="StudentsManagerModel.FK_tblEvent2EductionLevel_tblEvent">
+            <End Role="tblEvent" EntitySet="tblEvents" />
+            <End Role="tblEvent2EductionLevel" EntitySet="tblEvent2EductionLevel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblGroup1" Association="StudentsManagerModel.FK_tblStudent_tblGroup1">
+            <End Role="tblGroup" EntitySet="tblGroups" />
+            <End Role="tblStudent" EntitySet="tblStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblGroup2" Association="StudentsManagerModel.FK_tblStudent_tblGroup2">
+            <End Role="tblGroup" EntitySet="tblGroups" />
+            <End Role="tblStudent" EntitySet="tblStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblGroup3" Association="StudentsManagerModel.FK_tblStudent_tblGroup3">
+            <End Role="tblGroup" EntitySet="tblGroups" />
+            <End Role="tblStudent" EntitySet="tblStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblStudent_tblPriceGroup" Association="StudentsManagerModel.FK_tblStudent_tblPriceGroup">
+            <End Role="tblPriceGroup" EntitySet="tblPriceGroups" />
+            <End Role="tblStudent" EntitySet="tblStudents" />
+          </AssociationSet>
+          <AssociationSet Name="tblEmployee2EducationLevel" Association="StudentsManagerModel.tblEmployee2EducationLevel">
+            <End Role="tblEducationLevel" EntitySet="tblEducationLevels" />
+            <End Role="tblEmployee" EntitySet="tblEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="tblEmployee2Group" Association="StudentsManagerModel.tblEmployee2Group">
+            <End Role="tblEmployee" EntitySet="tblEmployees" />
+            <End Role="tblGroup" EntitySet="tblGroups" />
+          </AssociationSet>
+          <AssociationSet Name="tblEvent2Equipment" Association="StudentsManagerModel.tblEvent2Equipment">
+            <End Role="tblEvent" EntitySet="tblEvents" />
+            <End Role="tblDictionary" EntitySet="tblDictionaries" />
+          </AssociationSet>
+          <AssociationSet Name="tblEvent2Group" Association="StudentsManagerModel.tblEvent2Group">
+            <End Role="tblEvent" EntitySet="tblEvents" />
+            <End Role="tblGroup" EntitySet="tblGroups" />
+          </AssociationSet>
+          <EntitySet Name="vwGroup4List" EntityType="StudentsManagerModel.vwGroup4List" />
+          </EntityContainer>
+        <EntityType Name="tblCommonSetting">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblDictionary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DictionaryType" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="tblDictionaryType" Relationship="StudentsManagerModel.FK_tblDictionaries_tblDictionaryType" FromRole="tblDictionary" ToRole="tblDictionaryType" />
+          <NavigationProperty Name="tblEmployees" Relationship="StudentsManagerModel.FK_tblEmployee_tblEmployeeType" FromRole="tblDictionary" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblEvents" Relationship="StudentsManagerModel.FK_tblEvent_tblAuditorium" FromRole="tblDictionary" ToRole="tblEvent" />
+          <NavigationProperty Name="tblEvents1" Relationship="StudentsManagerModel.FK_tblEvent_tblEventType" FromRole="tblDictionary" ToRole="tblEvent" />
+          <NavigationProperty Name="tblStudents" Relationship="StudentsManagerModel.FK_tblStudent_tblDictionaries1" FromRole="tblDictionary" ToRole="tblStudent" />
+          <NavigationProperty Name="tblStudents1" Relationship="StudentsManagerModel.FK_tblStudent_tblDictionaries2" FromRole="tblDictionary" ToRole="tblStudent" />
+          <NavigationProperty Name="tblStudents2" Relationship="StudentsManagerModel.FK_tblStudent_tblDictionaries3" FromRole="tblDictionary" ToRole="tblStudent" />
+          <NavigationProperty Name="tblUsers" Relationship="StudentsManagerModel.FK_User_tblUserType" FromRole="tblDictionary" ToRole="tblUser" />
+          <NavigationProperty Name="tblEvents2" Relationship="StudentsManagerModel.tblEvent2Equipment" FromRole="tblDictionary" ToRole="tblEvent" />
+        </EntityType>
+        <EntityType Name="tblDictionaryType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblDictionaries" Relationship="StudentsManagerModel.FK_tblDictionaries_tblDictionaryType" FromRole="tblDictionaryType" ToRole="tblDictionary" />
+        </EntityType>
+        <EntityType Name="tblEducationLevel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Language" Type="Guid" Nullable="false" />
+          <Property Name="Position" Type="Byte" Nullable="false" />
+          <Property Name="MaxScore" Type="Int32" Nullable="false" />
+          <Property Name="MinScore" Type="Int32" />
+          <NavigationProperty Name="tblEvent2EductionLevel" Relationship="StudentsManagerModel.FK_tblEvent2EductionLevel_tblEducationLevel" FromRole="tblEducationLevel" ToRole="tblEvent2EductionLevel" />
+          <NavigationProperty Name="tblEvent2EductionLevel1" Relationship="StudentsManagerModel.FK_tblEvent2EductionLevel_tblEducationLevel1" FromRole="tblEducationLevel" ToRole="tblEvent2EductionLevel" />
+          <NavigationProperty Name="tblGroups" Relationship="StudentsManagerModel.FK_tblGroup_tblEducationLevel" FromRole="tblEducationLevel" ToRole="tblGroup" />
+          <NavigationProperty Name="tblEmployees" Relationship="StudentsManagerModel.tblEmployee2EducationLevel" FromRole="tblEducationLevel" ToRole="tblEmployee" />
+        </EntityType>
+        <EntityType Name="tblEmployee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronomic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SurnameAndInitails" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeType" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="tblDictionary" Relationship="StudentsManagerModel.FK_tblEmployee_tblEmployeeType" FromRole="tblEmployee" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblEvents" Relationship="StudentsManagerModel.FK_tblEvent_tblInstructor" FromRole="tblEmployee" ToRole="tblEvent" />
+          <NavigationProperty Name="tblEvents1" Relationship="StudentsManagerModel.FK_tblEvent_tblInstructor1" FromRole="tblEmployee" ToRole="tblEvent" />
+          <NavigationProperty Name="tblGroups" Relationship="StudentsManagerModel.FK_tblGroup_tblInstructor" FromRole="tblEmployee" ToRole="tblGroup" />
+          <NavigationProperty Name="tblGroups1" Relationship="StudentsManagerModel.FK_tblGroup_tblInstructor1" FromRole="tblEmployee" ToRole="tblGroup" />
+          <NavigationProperty Name="tblEducationLevels" Relationship="StudentsManagerModel.tblEmployee2EducationLevel" FromRole="tblEmployee" ToRole="tblEducationLevel" />
+          <NavigationProperty Name="tblGroups2" Relationship="StudentsManagerModel.tblEmployee2Group" FromRole="tblEmployee" ToRole="tblGroup" />
+        </EntityType>
+        <EntityType Name="tblEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="EventType" Type="Guid" Nullable="false" />
+          <Property Name="Theme" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryInstructor" Type="Guid" />
+          <Property Name="SubstituteInstructor" Type="Guid" />
+          <Property Name="Auditorium" Type="Guid" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblDictionary" Relationship="StudentsManagerModel.FK_tblEvent_tblAuditorium" FromRole="tblEvent" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblDictionary1" Relationship="StudentsManagerModel.FK_tblEvent_tblEventType" FromRole="tblEvent" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblEmployee" Relationship="StudentsManagerModel.FK_tblEvent_tblInstructor" FromRole="tblEvent" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblEmployee1" Relationship="StudentsManagerModel.FK_tblEvent_tblInstructor1" FromRole="tblEvent" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblEvent2EductionLevel" Relationship="StudentsManagerModel.FK_tblEvent2EductionLevel_tblEvent" FromRole="tblEvent" ToRole="tblEvent2EductionLevel" />
+          <NavigationProperty Name="tblDictionaries" Relationship="StudentsManagerModel.tblEvent2Equipment" FromRole="tblEvent" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblGroups" Relationship="StudentsManagerModel.tblEvent2Group" FromRole="tblEvent" ToRole="tblGroup" />
+        </EntityType>
+        <EntityType Name="tblEvent2EductionLevel">
+          <Key>
+            <PropertyRef Name="Event" />
+            <PropertyRef Name="StartEducationLevel" />
+          </Key>
+          <Property Name="Event" Type="Guid" Nullable="false" />
+          <Property Name="StartEducationLevel" Type="Guid" Nullable="false" />
+          <Property Name="EndEducationLevel" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="tblEducationLevel" Relationship="StudentsManagerModel.FK_tblEvent2EductionLevel_tblEducationLevel" FromRole="tblEvent2EductionLevel" ToRole="tblEducationLevel" />
+          <NavigationProperty Name="tblEducationLevel1" Relationship="StudentsManagerModel.FK_tblEvent2EductionLevel_tblEducationLevel1" FromRole="tblEvent2EductionLevel" ToRole="tblEducationLevel" />
+          <NavigationProperty Name="tblEvent" Relationship="StudentsManagerModel.FK_tblEvent2EductionLevel_tblEvent" FromRole="tblEvent2EductionLevel" ToRole="tblEvent" />
+        </EntityType>
+        <EntityType Name="tblGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentEducationLevel" Type="Guid" />
+          <Property Name="PrimaryInstructor" Type="Guid" />
+          <Property Name="SecondaryInstructor" Type="Guid" />
+          <NavigationProperty Name="tblEducationLevel" Relationship="StudentsManagerModel.FK_tblGroup_tblEducationLevel" FromRole="tblGroup" ToRole="tblEducationLevel" />
+          <NavigationProperty Name="tblEmployee" Relationship="StudentsManagerModel.FK_tblGroup_tblInstructor" FromRole="tblGroup" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblEmployee1" Relationship="StudentsManagerModel.FK_tblGroup_tblInstructor1" FromRole="tblGroup" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblStudents" Relationship="StudentsManagerModel.FK_tblStudent_tblGroup1" FromRole="tblGroup" ToRole="tblStudent" />
+          <NavigationProperty Name="tblStudents1" Relationship="StudentsManagerModel.FK_tblStudent_tblGroup2" FromRole="tblGroup" ToRole="tblStudent" />
+          <NavigationProperty Name="tblStudents2" Relationship="StudentsManagerModel.FK_tblStudent_tblGroup3" FromRole="tblGroup" ToRole="tblStudent" />
+          <NavigationProperty Name="tblEmployees" Relationship="StudentsManagerModel.tblEmployee2Group" FromRole="tblGroup" ToRole="tblEmployee" />
+          <NavigationProperty Name="tblEvents" Relationship="StudentsManagerModel.tblEvent2Group" FromRole="tblGroup" ToRole="tblEvent" />
+        </EntityType>
+        <EntityType Name="tblPriceGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="Byte" Nullable="false" />
+          <Property Name="IndexInPercents" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblStudents" Relationship="StudentsManagerModel.FK_tblStudent_tblPriceGroup" FromRole="tblPriceGroup" ToRole="tblStudent" />
+        </EntityType>
+        <EntityType Name="tblStudent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronomic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SurnameAndInitials" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="PriceGroup" Type="Guid" Nullable="false" />
+          <Property Name="Language1" Type="Guid" />
+          <Property Name="CurrentScore1" Type="Int32" />
+          <Property Name="FirstTestScore1" Type="Int32" />
+          <Property Name="Group1" Type="Guid" />
+          <Property Name="Language2" Type="Guid" />
+          <Property Name="CurrentScore2" Type="Int32" />
+          <Property Name="FirstTestScore2" Type="Int32" />
+          <Property Name="Group2" Type="Guid" />
+          <Property Name="Language3" Type="Guid" />
+          <Property Name="CurrentScore3" Type="Int32" />
+          <Property Name="FirstTestScore3" Type="Int32" />
+          <Property Name="Group3" Type="Guid" />
+          <NavigationProperty Name="tblDictionary" Relationship="StudentsManagerModel.FK_tblStudent_tblDictionaries1" FromRole="tblStudent" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblDictionary1" Relationship="StudentsManagerModel.FK_tblStudent_tblDictionaries2" FromRole="tblStudent" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblDictionary2" Relationship="StudentsManagerModel.FK_tblStudent_tblDictionaries3" FromRole="tblStudent" ToRole="tblDictionary" />
+          <NavigationProperty Name="tblGroup" Relationship="StudentsManagerModel.FK_tblStudent_tblGroup1" FromRole="tblStudent" ToRole="tblGroup" />
+          <NavigationProperty Name="tblGroup1" Relationship="StudentsManagerModel.FK_tblStudent_tblGroup2" FromRole="tblStudent" ToRole="tblGroup" />
+          <NavigationProperty Name="tblGroup2" Relationship="StudentsManagerModel.FK_tblStudent_tblGroup3" FromRole="tblStudent" ToRole="tblGroup" />
+          <NavigationProperty Name="tblPriceGroup" Relationship="StudentsManagerModel.FK_tblStudent_tblPriceGroup" FromRole="tblStudent" ToRole="tblPriceGroup" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="SurnameAndInitials" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="tblDictionary" Relationship="StudentsManagerModel.FK_User_tblUserType" FromRole="tblUser" ToRole="tblDictionary" />
+        </EntityType>
+        <EntityType Name="vwDictionary4List">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="DictionaryTypeId" />
+            <PropertyRef Name="DictionaryTypeName" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DictionaryTypeId" Type="Guid" Nullable="false" />
+          <Property Name="DictionaryTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwEducationLevel4List">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Position" />
+            <PropertyRef Name="MaxScore" />
+            <PropertyRef Name="LanguageId" />
+            <PropertyRef Name="LanguageName" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="Byte" Nullable="false" />
+          <Property Name="MinScore" Type="Int32" />
+          <Property Name="MaxScore" Type="Int32" Nullable="false" />
+          <Property Name="LanguageId" Type="Guid" Nullable="false" />
+          <Property Name="LanguageName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwEmployee4List">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="SurnameAndInitails" />
+            <PropertyRef Name="EmployeeTypeId" />
+            <PropertyRef Name="EmployeeTypeName" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronomic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SurnameAndInitails" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeTypeId" Type="Guid" Nullable="false" />
+          <Property Name="EmployeeTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwStudent4List">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Surname" />
+            <PropertyRef Name="SurnameAndInitials" />
+            <PropertyRef Name="PriceGroupId" />
+            <PropertyRef Name="PriceGroupName" />
+            <PropertyRef Name="Language1Id" />
+            <PropertyRef Name="Language1Name" />
+            <PropertyRef Name="Language2Id" />
+            <PropertyRef Name="Language2Name" />
+            <PropertyRef Name="Language3Id" />
+            <PropertyRef Name="Language3Name" />
+            <PropertyRef Name="Group1Id" />
+            <PropertyRef Name="Group1Name" />
+            <PropertyRef Name="Group2Id" />
+            <PropertyRef Name="Group2Name" />
+            <PropertyRef Name="Group3Id" />
+            <PropertyRef Name="Group3Name" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronomic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SurnameAndInitials" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentScore1" Type="Int32" />
+          <Property Name="FirstTestScore1" Type="Int32" />
+          <Property Name="CurrentScore2" Type="Int32" />
+          <Property Name="FirstTestScore2" Type="Int32" />
+          <Property Name="CurrentScore3" Type="Int32" />
+          <Property Name="FirstTestScore3" Type="Int32" />
+          <Property Name="PriceGroupId" Type="Guid" Nullable="false" />
+          <Property Name="PriceGroupName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Language1Id" Type="Guid" Nullable="false" />
+          <Property Name="Language1Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Language2Id" Type="Guid" Nullable="false" />
+          <Property Name="Language2Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Language3Id" Type="Guid" Nullable="false" />
+          <Property Name="Language3Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Group1Id" Type="Guid" Nullable="false" />
+          <Property Name="Group1Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Group2Id" Type="Guid" Nullable="false" />
+          <Property Name="Group2Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Group3Id" Type="Guid" Nullable="false" />
+          <Property Name="Group3Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwUser4List">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Login" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="SurnameAndInitials" />
+            <PropertyRef Name="UserTypeId" />
+            <PropertyRef Name="UserTypeName" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SurnameAndInitials" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="UserTypeId" Type="Guid" Nullable="false" />
+          <Property Name="UserTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_tblDictionaries_tblDictionaryType">
+          <End Type="StudentsManagerModel.tblDictionaryType" Role="tblDictionaryType" Multiplicity="1" />
+          <End Type="StudentsManagerModel.tblDictionary" Role="tblDictionary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionaryType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDictionary">
+              <PropertyRef Name="DictionaryType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmployee_tblEmployeeType">
+          <End Type="StudentsManagerModel.tblDictionary" Role="tblDictionary" Multiplicity="1" />
+          <End Type="StudentsManagerModel.tblEmployee" Role="tblEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEmployee">
+              <PropertyRef Name="EmployeeType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent_tblAuditorium">
+          <End Type="StudentsManagerModel.tblDictionary" Role="tblDictionary" Multiplicity="0..1" />
+          <End Type="StudentsManagerModel.tblEvent" Role="tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="Auditorium" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent_tblEventType">
+          <End Type="StudentsManagerModel.tblDictionary" Role="tblDictionary" Multiplicity="1" />
+          <End Type="StudentsManagerModel.tblEvent" Role="tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="EventType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblDictionaries1">
+          <End Type="StudentsManagerModel.tblDictionary" Role="tblDictionary" Multiplicity="0..1" />
+          <End Type="StudentsManagerModel.tblStudent" Role="tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="Language1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblDictionaries2">
+          <End Type="StudentsManagerModel.tblDictionary" Role="tblDictionary" Multiplicity="0..1" />
+          <End Type="StudentsManagerModel.tblStudent" Role="tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="Language2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblDictionaries3">
+          <End Type="StudentsManagerModel.tblDictionary" Role="tblDictionary" Multiplicity="0..1" />
+          <End Type="StudentsManagerModel.tblStudent" Role="tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="Language3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_tblUserType">
+          <End Type="StudentsManagerModel.tblDictionary" Role="tblDictionary" Multiplicity="1" />
+          <End Type="StudentsManagerModel.tblUser" Role="tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDictionary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent2EductionLevel_tblEducationLevel">
+          <End Type="StudentsManagerModel.tblEducationLevel" Role="tblEducationLevel" Multiplicity="1" />
+          <End Type="StudentsManagerModel.tblEvent2EductionLevel" Role="tblEvent2EductionLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEducationLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent2EductionLevel">
+              <PropertyRef Name="StartEducationLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent2EductionLevel_tblEducationLevel1">
+          <End Type="StudentsManagerModel.tblEducationLevel" Role="tblEducationLevel" Multiplicity="1" />
+          <End Type="StudentsManagerModel.tblEvent2EductionLevel" Role="tblEvent2EductionLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEducationLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent2EductionLevel">
+              <PropertyRef Name="EndEducationLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGroup_tblEducationLevel">
+          <End Type="StudentsManagerModel.tblEducationLevel" Role="tblEducationLevel" Multiplicity="0..1" />
+          <End Type="StudentsManagerModel.tblGroup" Role="tblGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEducationLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblGroup">
+              <PropertyRef Name="CurrentEducationLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent_tblInstructor">
+          <End Type="StudentsManagerModel.tblEmployee" Role="tblEmployee" Multiplicity="0..1" />
+          <End Type="StudentsManagerModel.tblEvent" Role="tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="PrimaryInstructor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent_tblInstructor1">
+          <End Type="StudentsManagerModel.tblEmployee" Role="tblEmployee" Multiplicity="0..1" />
+          <End Type="StudentsManagerModel.tblEvent" Role="tblEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent">
+              <PropertyRef Name="SubstituteInstructor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGroup_tblInstructor">
+          <End Type="StudentsManagerModel.tblEmployee" Role="tblEmployee" Multiplicity="0..1" />
+          <End Type="StudentsManagerModel.tblGroup" Role="tblGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblGroup">
+              <PropertyRef Name="PrimaryInstructor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGroup_tblInstructor1">
+          <End Type="StudentsManagerModel.tblEmployee" Role="tblEmployee" Multiplicity="0..1" />
+          <End Type="StudentsManagerModel.tblGroup" Role="tblGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmployee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblGroup">
+              <PropertyRef Name="SecondaryInstructor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEvent2EductionLevel_tblEvent">
+          <End Type="StudentsManagerModel.tblEvent" Role="tblEvent" Multiplicity="1" />
+          <End Type="StudentsManagerModel.tblEvent2EductionLevel" Role="tblEvent2EductionLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblEvent2EductionLevel">
+              <PropertyRef Name="Event" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblGroup1">
+          <End Type="StudentsManagerModel.tblGroup" Role="tblGroup" Multiplicity="0..1" />
+          <End Type="StudentsManagerModel.tblStudent" Role="tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="Group1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblGroup2">
+          <End Type="StudentsManagerModel.tblGroup" Role="tblGroup" Multiplicity="0..1" />
+          <End Type="StudentsManagerModel.tblStudent" Role="tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="Group2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblGroup3">
+          <End Type="StudentsManagerModel.tblGroup" Role="tblGroup" Multiplicity="0..1" />
+          <End Type="StudentsManagerModel.tblStudent" Role="tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="Group3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblStudent_tblPriceGroup">
+          <End Type="StudentsManagerModel.tblPriceGroup" Role="tblPriceGroup" Multiplicity="1" />
+          <End Type="StudentsManagerModel.tblStudent" Role="tblStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPriceGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblStudent">
+              <PropertyRef Name="PriceGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblEmployee2EducationLevel">
+          <End Type="StudentsManagerModel.tblEducationLevel" Role="tblEducationLevel" Multiplicity="*" />
+          <End Type="StudentsManagerModel.tblEmployee" Role="tblEmployee" Multiplicity="*" />
+        </Association>
+        <Association Name="tblEmployee2Group">
+          <End Type="StudentsManagerModel.tblEmployee" Role="tblEmployee" Multiplicity="*" />
+          <End Type="StudentsManagerModel.tblGroup" Role="tblGroup" Multiplicity="*" />
+        </Association>
+        <Association Name="tblEvent2Equipment">
+          <End Type="StudentsManagerModel.tblEvent" Role="tblEvent" Multiplicity="*" />
+          <End Type="StudentsManagerModel.tblDictionary" Role="tblDictionary" Multiplicity="*" />
+        </Association>
+        <Association Name="tblEvent2Group">
+          <End Type="StudentsManagerModel.tblEvent" Role="tblEvent" Multiplicity="*" />
+          <End Type="StudentsManagerModel.tblGroup" Role="tblGroup" Multiplicity="*" />
+        </Association>
+        <EntityType Name="vwGroup4List">
+          <Key>
+            <PropertyRef Name="GroupId" />
+            <PropertyRef Name="GroupName" />
+            <PropertyRef Name="EducationLevelId" />
+            <PropertyRef Name="EducationLevelName" />
+            <PropertyRef Name="EducationLevelLanguageId" />
+            <PropertyRef Name="EducationLevelLanguageName" />
+          </Key>
+          <Property Name="GroupId" Type="Guid" Nullable="false" />
+          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GroupDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GroupPrimaryInstructor" Type="Guid" />
+          <Property Name="GroupSecondaryInstructor" Type="Guid" />
+          <Property Name="EducationLevelId" Type="Guid" Nullable="false" />
+          <Property Name="EducationLevelName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EducationLevelLanguageId" Type="Guid" Nullable="false" />
+          <Property Name="EducationLevelLanguageName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StudentsManagerModelStoreContainer" CdmEntityContainer="StudentsManagerEntities">
+          <FunctionImportMapping FunctionImportName="prcMakeBackup" FunctionName="StudentsManagerModel.Store.prcMakeBackup" />
+          <EntitySetMapping Name="tblCommonSettings">
+            <EntityTypeMapping TypeName="StudentsManagerModel.tblCommonSetting">
+              <MappingFragment StoreEntitySet="tblCommonSettings">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDictionaries">
+            <EntityTypeMapping TypeName="StudentsManagerModel.tblDictionary">
+              <MappingFragment StoreEntitySet="tblDictionaries">
+                <ScalarProperty Name="DictionaryType" ColumnName="DictionaryType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDictionaryTypes">
+            <EntityTypeMapping TypeName="StudentsManagerModel.tblDictionaryType">
+              <MappingFragment StoreEntitySet="tblDictionaryType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEducationLevels">
+            <EntityTypeMapping TypeName="StudentsManagerModel.tblEducationLevel">
+              <MappingFragment StoreEntitySet="tblEducationLevel">
+                <ScalarProperty Name="MinScore" ColumnName="MinScore" />
+                <ScalarProperty Name="MaxScore" ColumnName="MaxScore" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEmployees">
+            <EntityTypeMapping TypeName="StudentsManagerModel.tblEmployee">
+              <MappingFragment StoreEntitySet="tblEmployee">
+                <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SurnameAndInitails" ColumnName="SurnameAndInitails" />
+                <ScalarProperty Name="Patronomic" ColumnName="Patronomic" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEvents">
+            <EntityTypeMapping TypeName="StudentsManagerModel.tblEvent">
+              <MappingFragment StoreEntitySet="tblEvent">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Auditorium" ColumnName="Auditorium" />
+                <ScalarProperty Name="SubstituteInstructor" ColumnName="SubstituteInstructor" />
+                <ScalarProperty Name="PrimaryInstructor" ColumnName="PrimaryInstructor" />
+                <ScalarProperty Name="Theme" ColumnName="Theme" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEvent2EductionLevel">
+            <EntityTypeMapping TypeName="StudentsManagerModel.tblEvent2EductionLevel">
+              <MappingFragment StoreEntitySet="tblEvent2EductionLevel">
+                <ScalarProperty Name="EndEducationLevel" ColumnName="EndEducationLevel" />
+                <ScalarProperty Name="StartEducationLevel" ColumnName="StartEducationLevel" />
+                <ScalarProperty Name="Event" ColumnName="Event" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGroups">
+            <EntityTypeMapping TypeName="StudentsManagerModel.tblGroup">
+              <MappingFragment StoreEntitySet="tblGroup">
+                <ScalarProperty Name="SecondaryInstructor" ColumnName="SecondaryInstructor" />
+                <ScalarProperty Name="PrimaryInstructor" ColumnName="PrimaryInstructor" />
+                <ScalarProperty Name="CurrentEducationLevel" ColumnName="CurrentEducationLevel" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPriceGroups">
+            <EntityTypeMapping TypeName="StudentsManagerModel.tblPriceGroup">
+              <MappingFragment StoreEntitySet="tblPriceGroup">
+                <ScalarProperty Name="IndexInPercents" ColumnName="IndexInPercents" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStudents">
+            <EntityTypeMapping TypeName="StudentsManagerModel.tblStudent">
+              <MappingFragment StoreEntitySet="tblStudent">
+                <ScalarProperty Name="Group3" ColumnName="Group3" />
+                <ScalarProperty Name="FirstTestScore3" ColumnName="FirstTestScore3" />
+                <ScalarProperty Name="CurrentScore3" ColumnName="CurrentScore3" />
+                <ScalarProperty Name="Language3" ColumnName="Language3" />
+                <ScalarProperty Name="Group2" ColumnName="Group2" />
+                <ScalarProperty Name="FirstTestScore2" ColumnName="FirstTestScore2" />
+                <ScalarProperty Name="CurrentScore2" ColumnName="CurrentScore2" />
+                <ScalarProperty Name="Language2" ColumnName="Language2" />
+                <ScalarProperty Name="Group1" ColumnName="Group1" />
+                <ScalarProperty Name="FirstTestScore1" ColumnName="FirstTestScore1" />
+                <ScalarProperty Name="CurrentScore1" ColumnName="CurrentScore1" />
+                <ScalarProperty Name="Language1" ColumnName="Language1" />
+                <ScalarProperty Name="PriceGroup" ColumnName="PriceGroup" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SurnameAndInitials" ColumnName="SurnameAndInitials" />
+                <ScalarProperty Name="Patronomic" ColumnName="Patronomic" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="StudentsManagerModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="SurnameAndInitials" ColumnName="SurnameAndInitials" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwDictionary4List">
+            <EntityTypeMapping TypeName="StudentsManagerModel.vwDictionary4List">
+              <MappingFragment StoreEntitySet="vwDictionary4List">
+                <ScalarProperty Name="DictionaryTypeName" ColumnName="DictionaryTypeName" />
+                <ScalarProperty Name="DictionaryTypeId" ColumnName="DictionaryTypeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwEducationLevel4List">
+            <EntityTypeMapping TypeName="StudentsManagerModel.vwEducationLevel4List">
+              <MappingFragment StoreEntitySet="vwEducationLevel4List">
+                <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="MaxScore" ColumnName="MaxScore" />
+                <ScalarProperty Name="MinScore" ColumnName="MinScore" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwEmployee4List">
+            <EntityTypeMapping TypeName="StudentsManagerModel.vwEmployee4List">
+              <MappingFragment StoreEntitySet="vwEmployee4List">
+                <ScalarProperty Name="EmployeeTypeName" ColumnName="EmployeeTypeName" />
+                <ScalarProperty Name="EmployeeTypeId" ColumnName="EmployeeTypeId" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SurnameAndInitails" ColumnName="SurnameAndInitails" />
+                <ScalarProperty Name="Patronomic" ColumnName="Patronomic" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwStudent4List">
+            <EntityTypeMapping TypeName="StudentsManagerModel.vwStudent4List">
+              <MappingFragment StoreEntitySet="vwStudent4List">
+                <ScalarProperty Name="Group3Name" ColumnName="Group3Name" />
+                <ScalarProperty Name="Group3Id" ColumnName="Group3Id" />
+                <ScalarProperty Name="Group2Name" ColumnName="Group2Name" />
+                <ScalarProperty Name="Group2Id" ColumnName="Group2Id" />
+                <ScalarProperty Name="Group1Name" ColumnName="Group1Name" />
+                <ScalarProperty Name="Group1Id" ColumnName="Group1Id" />
+                <ScalarProperty Name="Language3Name" ColumnName="Language3Name" />
+                <ScalarProperty Name="Language3Id" ColumnName="Language3Id" />
+                <ScalarProperty Name="Language2Name" ColumnName="Language2Name" />
+                <ScalarProperty Name="Language2Id" ColumnName="Language2Id" />
+                <ScalarProperty Name="Language1Name" ColumnName="Language1Name" />
+                <ScalarProperty Name="Language1Id" ColumnName="Language1Id" />
+                <ScalarProperty Name="PriceGroupName" ColumnName="PriceGroupName" />
+                <ScalarProperty Name="PriceGroupId" ColumnName="PriceGroupId" />
+                <ScalarProperty Name="FirstTestScore3" ColumnName="FirstTestScore3" />
+                <ScalarProperty Name="CurrentScore3" ColumnName="CurrentScore3" />
+                <ScalarProperty Name="FirstTestScore2" ColumnName="FirstTestScore2" />
+                <ScalarProperty Name="CurrentScore2" ColumnName="CurrentScore2" />
+                <ScalarProperty Name="FirstTestScore1" ColumnName="FirstTestScore1" />
+                <ScalarProperty Name="CurrentScore1" ColumnName="CurrentScore1" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SurnameAndInitials" ColumnName="SurnameAndInitials" />
+                <ScalarProperty Name="Patronomic" ColumnName="Patronomic" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwUser4List">
+            <EntityTypeMapping TypeName="StudentsManagerModel.vwUser4List">
+              <MappingFragment StoreEntitySet="vwUser4List">
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="SurnameAndInitials" ColumnName="SurnameAndInitials" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tblEmployee2EducationLevel" TypeName="StudentsManagerModel.tblEmployee2EducationLevel" StoreEntitySet="tblEmployee2EducationLevel">
+            <EndProperty Name="tblEmployee">
+              <ScalarProperty Name="Id" ColumnName="Instructor" />
+            </EndProperty>
+            <EndProperty Name="tblEducationLevel">
+              <ScalarProperty Name="Id" ColumnName="EducationLevel" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tblEmployee2Group" TypeName="StudentsManagerModel.tblEmployee2Group" StoreEntitySet="tblEmployee2Group">
+            <EndProperty Name="tblGroup">
+              <ScalarProperty Name="Id" ColumnName="Group" />
+            </EndProperty>
+            <EndProperty Name="tblEmployee">
+              <ScalarProperty Name="Id" ColumnName="Employee" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tblEvent2Equipment" TypeName="StudentsManagerModel.tblEvent2Equipment" StoreEntitySet="tblEvent2Equipment">
+            <EndProperty Name="tblDictionary">
+              <ScalarProperty Name="Id" ColumnName="Equipment" />
+            </EndProperty>
+            <EndProperty Name="tblEvent">
+              <ScalarProperty Name="Id" ColumnName="Event" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tblEvent2Group" TypeName="StudentsManagerModel.tblEvent2Group" StoreEntitySet="tblEvent2Group">
+            <EndProperty Name="tblGroup">
+              <ScalarProperty Name="Id" ColumnName="Group" />
+            </EndProperty>
+            <EndProperty Name="tblEvent">
+              <ScalarProperty Name="Id" ColumnName="Event" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="vwGroup4List">
+            <EntityTypeMapping TypeName="StudentsManagerModel.vwGroup4List">
+              <MappingFragment StoreEntitySet="vwGroup4List">
+                <ScalarProperty Name="EducationLevelLanguageName" ColumnName="EducationLevelLanguageName" />
+                <ScalarProperty Name="EducationLevelLanguageId" ColumnName="EducationLevelLanguageId" />
+                <ScalarProperty Name="EducationLevelName" ColumnName="EducationLevelName" />
+                <ScalarProperty Name="EducationLevelId" ColumnName="EducationLevelId" />
+                <ScalarProperty Name="GroupSecondaryInstructor" ColumnName="GroupSecondaryInstructor" />
+                <ScalarProperty Name="GroupPrimaryInstructor" ColumnName="GroupPrimaryInstructor" />
+                <ScalarProperty Name="GroupDescription" ColumnName="GroupDescription" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

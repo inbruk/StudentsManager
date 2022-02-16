@@ -1,0 +1,4 @@
+Хороший хостинг для внешнего показа: somee.com
+
+Доступ к БД:
+data source=...;initial catalog=StudentsManager; User ID=stud_mgr;Password=...;

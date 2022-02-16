@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e4e8c0def2654acd8f7a0064b9524ef7" Name="Diagram1">
+        <EntityTypeShape EntityType="StudentsManagerModel.tblCommonSetting" Width="1.5" PointX="0.75" PointY="10.875" />
+        <EntityTypeShape EntityType="StudentsManagerModel.tblDictionary" Width="1.5" PointX="7.5" PointY="0.75" />
+        <EntityTypeShape EntityType="StudentsManagerModel.tblDictionaryType" Width="1.5" PointX="5.25" PointY="11.625" />
+        <EntityTypeShape EntityType="StudentsManagerModel.tblEducationLevel" Width="1.5" PointX="0.75" PointY="7" />
+        <EntityTypeShape EntityType="StudentsManagerModel.tblEmployee" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="StudentsManagerModel.tblEvent" Width="1.5" PointX="5.25" PointY="1.625" />
+        <EntityTypeShape EntityType="StudentsManagerModel.tblEvent2EductionLevel" Width="1.5" PointX="3" PointY="7.375" />
+        <EntityTypeShape EntityType="StudentsManagerModel.tblGroup" Width="1.5" PointX="6" PointY="6.625" />
+        <EntityTypeShape EntityType="StudentsManagerModel.tblPriceGroup" Width="1.5" PointX="6" PointY="14.375" />
+        <EntityTypeShape EntityType="StudentsManagerModel.tblStudent" Width="1.5" PointX="8.25" PointY="5.375" />
+        <EntityTypeShape EntityType="StudentsManagerModel.tblUser" Width="1.5" PointX="9.75" PointY="1.25" />
+        <EntityTypeShape EntityType="StudentsManagerModel.vwDictionary4List" Width="1.5" PointX="10.75" PointY="4.875" />
+        <EntityTypeShape EntityType="StudentsManagerModel.vwEducationLevel4List" Width="1.5" PointX="10.75" PointY="7.875" />
+        <EntityTypeShape EntityType="StudentsManagerModel.vwEmployee4List" Width="1.5" PointX="11.75" PointY="0.875" />
+        <EntityTypeShape EntityType="StudentsManagerModel.vwStudent4List" Width="1.5" PointX="10.75" PointY="11.875" />
+        <EntityTypeShape EntityType="StudentsManagerModel.vwUser4List" Width="1.5" PointX="12.75" PointY="4.875" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblDictionaries_tblDictionaryType" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblEmployee_tblEmployeeType" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblEvent_tblAuditorium" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblEvent_tblEventType" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblStudent_tblDictionaries1" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblStudent_tblDictionaries2" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblStudent_tblDictionaries3" />
+        <AssociationConnector Association="StudentsManagerModel.FK_User_tblUserType" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblEvent2EductionLevel_tblEducationLevel" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblEvent2EductionLevel_tblEducationLevel1" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblGroup_tblEducationLevel" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblEvent_tblInstructor" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblEvent_tblInstructor1" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblGroup_tblInstructor" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblGroup_tblInstructor1" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblEvent2EductionLevel_tblEvent" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblStudent_tblGroup1" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblStudent_tblGroup2" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblStudent_tblGroup3" />
+        <AssociationConnector Association="StudentsManagerModel.FK_tblStudent_tblPriceGroup" />
+        <AssociationConnector Association="StudentsManagerModel.tblEmployee2EducationLevel" />
+        <AssociationConnector Association="StudentsManagerModel.tblEmployee2Group" />
+        <AssociationConnector Association="StudentsManagerModel.tblEvent2Equipment" />
+        <AssociationConnector Association="StudentsManagerModel.tblEvent2Group" />
+        <EntityTypeShape EntityType="StudentsManagerModel.vwGroup4List" Width="1.5" PointX="0.75" PointY="13.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

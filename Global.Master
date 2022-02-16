@@ -1,0 +1,100 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true"  CodeBehind="Global.Master.cs" Inherits="StudentsManager.PresentationLayer.Global" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+
+	<title> <asp:ContentPlaceHolder ID="title" runat="server" /> </title>
+
+	<telerik:RadStyleSheetManager id="RadStyleSheetManager1" runat="server" />
+
+    <link href="GlobalStyles.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <form id="aspnetForm" runat="server">
+
+	    <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
+		    <Scripts>
+			    <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js" />
+			    <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js" />
+			    <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js" />
+		    </Scripts>
+	    </telerik:RadScriptManager>
+
+        <telerik:RadSkinManager ID="RadSkinManager1" runat="server" Skin="Office2010Silver" />
+
+        <telerik:RadFormDecorator ID="RadFormDecorator1" runat="server" DecoratedControls="All" EnableRoundedCorners="true" />
+
+        <div class="bodyContainer" >
+
+            <div class="headerPart" >
+                <asp:ContentPlaceHolder ID="header" runat="server" />
+            </div>
+
+            <div class="menuPart">
+                <telerik:RadMenu ID="MainMenu" runat="server" EnableRoundedCorners="true" EnableShadows="true" width="1280px" OnItemClick="MainMenu_ItemClick"  >
+                   <Items>
+                       <telerik:RadMenuItem Text="Группы">
+                             <Items>
+                                  <telerik:RadMenuItem Text="Формируемые" Value="mitFormedGroups" />
+                                  <telerik:RadMenuItem Text="Активные" Value="mitActiveGroups" />
+                             </Items>
+                        </telerik:RadMenuItem>                        
+                        <telerik:RadMenuItem Text="Студенты" Value="mitStudents" />
+                        <telerik:RadMenuItem Text="Персонал">
+                             <Items>
+                                  <telerik:RadMenuItem Text="Преподаватели" Value="mitTutors" />
+                                  <telerik:RadMenuItem Text="Ассистенты" Value="mitAssistents" />
+                             </Items>
+                        </telerik:RadMenuItem>
+
+                        <telerik:RadMenuItem Text="Инфраструктура">
+                             <Items>
+                                  <telerik:RadMenuItem Text="Аудитории" Value="mitAuditorium" />
+                                  <telerik:RadMenuItem Text="Оборудование" Value="mitEquipment" />
+                             </Items>
+                        </telerik:RadMenuItem>
+
+                        <telerik:RadMenuItem Text="Общие настройки">
+                             <Items>
+                                  <telerik:RadMenuItem Text="Языки" Value="mitLanguages" />
+                                  <telerik:RadMenuItem Text="Уровни подготовки" Value="mitEducationLevel"/>
+                                  <telerik:RadMenuItem Text="Ценовые группы" Value="mitPriceGroup"/>
+                                  <telerik:RadMenuItem Text="Типы событий/мероприятий"  Value="mitEventType" />
+                             </Items>
+                        </telerik:RadMenuItem>
+
+                        <telerik:RadMenuItem Value="mitAdministration" Text="Администрирование" Enabled="false">
+                             <Items>
+                                  <telerik:RadMenuItem Text="Пользователи - менеджеры" Value="mitUsersManagers" />
+                                  <telerik:RadMenuItem Text="Пользователи - администраторы"  Value="mitUsersAdministrators"/>
+
+                                  <telerik:RadMenuItem IsSeparator="True" />
+
+                                  <telerik:RadMenuItem Text="Параметры базы данных" Value="mitDatabaseSettings" />
+                                  <telerik:RadMenuItem Text="Настройки шлюза рассылки СМС" />
+                                  <telerik:RadMenuItem Text="Настройки отсылки писем" />
+
+                             </Items>
+                        </telerik:RadMenuItem>
+                        <telerik:RadMenuItem Value="mitExit" Text="Выйти"  />
+                    </Items>
+                </telerik:RadMenu>
+            </div>
+
+            <div class="mainPart">
+                <asp:ContentPlaceHolder ID="main" runat="server" />
+            </div>
+
+            <div class="bottomPart">
+                <asp:ContentPlaceHolder ID="bottom" runat="server" />
+            </div>
+
+        </div>
+
+    </form>
+</body>
+</html>

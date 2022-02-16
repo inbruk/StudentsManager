@@ -1,0 +1,72 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "PresentationLayer.csproj", "{7540A6B5-5932-408D-A29A-3159078A4F13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{85941B1E-B0C1-4248-BD13-7E7A10FC6EA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{F5ECA915-F195-44A2-A522-B3D39739B0F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentsManagerDBBackuper", "StudentsManagerDBBackuper\StudentsManagerDBBackuper.csproj", "{95F8DC74-64A6-4B0A-89A6-67C54985AC85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBBackups", "DBBackups", "{37EEAB69-0FE1-49C4-9B83-9CD77457084E}"
+	ProjectSection(SolutionItems) = preProject
+		DBBackups\StudentsManager05062014 = DBBackups\StudentsManager05062014
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{ADF2FDAA-614F-40B9-A86B-06083147C5A5}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\accounts.txt = Documents\accounts.txt
+		Documents\db-structure.png = Documents\db-structure.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScreenShots", "ScreenShots", "{BD3651DB-7104-439C-A2BF-03B4829B3AB6}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\ScreenShots\1.png = Documents\ScreenShots\1.png
+		Documents\ScreenShots\10.png = Documents\ScreenShots\10.png
+		Documents\ScreenShots\11.png = Documents\ScreenShots\11.png
+		Documents\ScreenShots\2.png = Documents\ScreenShots\2.png
+		Documents\ScreenShots\3.png = Documents\ScreenShots\3.png
+		Documents\ScreenShots\4.png = Documents\ScreenShots\4.png
+		Documents\ScreenShots\5.png = Documents\ScreenShots\5.png
+		Documents\ScreenShots\6.png = Documents\ScreenShots\6.png
+		Documents\ScreenShots\7.png = Documents\ScreenShots\7.png
+		Documents\ScreenShots\8.png = Documents\ScreenShots\8.png
+		Documents\ScreenShots\9.png = Documents\ScreenShots\9.png
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7540A6B5-5932-408D-A29A-3159078A4F13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7540A6B5-5932-408D-A29A-3159078A4F13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7540A6B5-5932-408D-A29A-3159078A4F13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7540A6B5-5932-408D-A29A-3159078A4F13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85941B1E-B0C1-4248-BD13-7E7A10FC6EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85941B1E-B0C1-4248-BD13-7E7A10FC6EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85941B1E-B0C1-4248-BD13-7E7A10FC6EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85941B1E-B0C1-4248-BD13-7E7A10FC6EA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5ECA915-F195-44A2-A522-B3D39739B0F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5ECA915-F195-44A2-A522-B3D39739B0F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5ECA915-F195-44A2-A522-B3D39739B0F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5ECA915-F195-44A2-A522-B3D39739B0F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95F8DC74-64A6-4B0A-89A6-67C54985AC85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95F8DC74-64A6-4B0A-89A6-67C54985AC85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95F8DC74-64A6-4B0A-89A6-67C54985AC85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95F8DC74-64A6-4B0A-89A6-67C54985AC85}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BD3651DB-7104-439C-A2BF-03B4829B3AB6} = {ADF2FDAA-614F-40B9-A86B-06083147C5A5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4E5EADBB-07BE-402A-9DCF-1C1AD82A3040}
+	EndGlobalSection
+EndGlobal

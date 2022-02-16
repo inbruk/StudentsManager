@@ -1,0 +1,288 @@
+﻿.bodyContainer
+{
+    width:1280px;
+    height:916px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin:-458px 0 0 -640px;
+}
+
+.headerPart
+{
+    width:1280px;
+    height:80px;
+    background-image:url(Images/header.png);
+}
+
+.menuPart
+{
+    width:1280px;
+    height:26px;
+}
+
+.mainPart
+{
+    width:1280px;
+    height:730px;
+    background-image:url(Images/main-back.png);
+    border-bottom:1px solid #FFFFFF;
+}
+
+.bottomPart
+{
+    width:1280px;
+    height:80px;
+    border-top:2px solid #5B5B5B;
+    background-image:url(Images/bottom.png);
+}
+
+.formRow
+{
+    height:20px;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:0px;
+    padding-right:0px;
+    margin:0px;
+}
+
+.formButtonRow
+{
+    height:30px;
+    margin:0px;
+    vertical-align:middle;
+    text-align:center;
+    padding-top:10px
+}
+
+
+.formItem
+{
+    height:20px;
+    width:240px;
+    padding:0px;
+    margin:0px;
+}
+
+.formLabelShort
+{
+    float:left;
+    height:20px;
+    width:100px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:0px;
+    padding-bottom:0px;
+    text-align:right;
+}
+
+.formValueShort
+{
+    float:left;
+    height:20px;
+    width:100px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+.formLabelMedium1
+{
+    text-align:right;
+    vertical-align:middle;
+    padding:0;
+    padding-right:5px;
+    height:30px;
+    width:95px;
+}
+
+.formLabelMedium15
+{
+    text-align:right;
+    vertical-align:middle;
+    padding:0;
+    padding-right:5px;
+    height:30px;
+    width:145px;
+}
+
+.formLabelMedium2
+{
+    text-align:right;
+    vertical-align:middle;
+    padding:0;
+    padding-right:5px;
+    height:30px;
+    width:195px;
+}
+
+.formValueMedium1
+{
+    text-align:left;
+    height:30px;
+    width:100px;
+    padding:0px;
+}
+
+.formValueMedium15
+{
+    text-align:left;
+    height:30px;
+    width:150px;
+    padding:0px;
+}
+
+
+.formValueMedium2
+{
+    text-align:left;
+    height:30px;
+    width:200px;
+    padding:0px;
+}
+
+.toolBarLinkButton
+{
+    font-family: "Segoe UI",Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight:400;
+    color:#242424;
+    text-decoration: none; 
+    vertical-align:middle;
+}
+
+.toolBar
+{
+    height:27px;
+    border: 1px solid #A4ABB2;
+    padding:0px;
+    margin:0px;
+    background-image:url(Images/toolbar_background.png);
+    background-repeat:repeat-x;
+}
+
+.WinLikeBorder_Office2010Silver
+{
+    font-family: "Segoe UI",Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    backface-visibility: hidden;
+    transform: rotate3d(0, 0, 1, 0deg);
+}
+
+.WinLikeBorder_rwTable
+{
+    border: 0 none;
+    padding: 0;
+    height: 100%;
+    table-layout: auto;
+    width: 100%;
+    visibility: visible;
+}
+
+.WinLikeBorder_rwTitleRow
+{
+}
+
+.WinLikeBorder_rwTopLeft
+{
+    background-image: url("/Images/WebControls.gif");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    font-size: 1px;
+    height: 8px;
+    line-height: 1px;
+}
+
+.WinLikeBorder_rwTopRight 
+{
+    background-image: url("/Images/WebControls.gif");
+    background-position: -8px 0;
+    background-repeat: no-repeat;
+    font-size: 1px;
+    height: 8px;
+    line-height: 1px;
+}
+
+.WinLikeBorder_rwCorner
+{
+    width: 8px;
+    border: 0 none;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+}
+
+.WinLikeBorder_rwTitlebar 
+{
+    color: #3B3B3B;
+    background-position: 0 -31px;
+    background-repeat: repeat-x;
+    background-image: url("/Images/WebControls.gif");
+    border: 0 none;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    padding-left: 5px;
+    vertical-align:middle;
+    font-weight:700;
+    font-size:12px;
+    height:31px;
+}
+
+.WinLikeBorder_rwBodyLeft
+{
+    background-repeat: repeat-y;
+    background-image: url("/Images/Borders.gif");
+}
+
+.WinLikeBorder_rwBodyRight 
+{
+    background-repeat: repeat-y;
+    background-image: url("/Images/Borders.gif");
+    background-position: -8px 0;
+}
+
+.WinLikeBorder_rwWindowContent 
+{
+    background: none repeat scroll 0 0 #FFFFFF;
+    height: 100% !important;
+}
+
+.WinLikeBorder_rwFooterLeft
+{
+    background-image: url("/Images/WebControls.gif");
+    background-position: 0 -62px;
+    background-repeat: no-repeat;
+    font-size: 1px;
+    height: 8px;
+    line-height: 1px;
+}
+
+.WinLikeBorder_rwFooterRight
+{
+    background-image: url("/Images/WebControls.gif");
+    background-position: -8px -62px;
+    background-repeat: no-repeat;
+    font-size: 1px;
+    height: 8px;
+    line-height: 1px;
+}
+
+.WinLikeBorder_rwFooterCenter
+{
+    background-image: url("/Images/WebControls.gif");
+    background-position: 0 -70px;
+    background-repeat: repeat-x;
+    font-size: 1px;
+    height: 8px;
+    line-height: 1px;
+    border: 0 none;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+}
+
